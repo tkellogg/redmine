@@ -107,7 +107,7 @@ class IssuesController < ApplicationController
     @allowed_statuses = @issue.new_statuses_allowed_to(User.current)
     @edit_allowed = User.current.allowed_to?(:edit_issues, @project)
     @priorities = IssuePriority.all
-    @time_entry = TimeEntry.new
+    @time_entry = TimeEntry.new(:spent_on => User.current.today)
     respond_to do |format|
       format.html { render :template => 'issues/show.rhtml' }
       format.xml  { render :layout => false }
